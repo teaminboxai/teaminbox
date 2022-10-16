@@ -11,7 +11,7 @@ on:
       - develop
       - master
     tags:
-      - v*
+      - latest
   workflow_dispatch:
 
 jobs:
@@ -29,14 +29,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Strip enterprise code
-        run: |
-          rm -rf enterprise
-          rm -rf spec/enterprise
-
       - name: Set Teaminbox edition
         run: |
-          echo -en '\nENV CW_EDITION="ce"' >> docker/Dockerfile
+          echo -en '\nENV CW_EDITION="latest"' >> docker/Dockerfile
 
       - name: set docker tag
         run: |
